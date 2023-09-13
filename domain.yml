@@ -1,0 +1,119 @@
+version: "3.1"
+
+config:
+  store_entities_as_slots: true
+
+actions:
+  - action_recomendar_pelicula
+  - action_based_on_mood
+  - action_custom_goodbye
+
+intents:
+  - inform_genre
+  - see_movie
+  - positive_feedback
+  - greet
+  - presentation
+  - mood
+  - how_are_you
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - nUnderstand
+
+entities:
+  - nombre
+  - estado_animo
+  - genero_pelicula
+
+slots:
+  nombre:
+    type: text
+    mappings:
+      - type: from_entity
+        intent: presentation
+        entity: nombre
+  estado_animo:
+    type: text
+    mappings:
+      - type: from_entity
+        intent: mood
+        entity: estado_animo
+  genero_pelicula:
+    type: text
+    mappings:
+      - type: from_entity
+        intent: inform_genre
+        entity: genero_pelicula
+    
+
+responses:
+
+  utter_ask_genre:
+  - text: "Genial! ¿De que genero te gustaria?"
+
+  utter_dont_want_movie:
+  - text: "Que mal :("
+
+  utter_want_movie:
+  - text: "¿Quieres ver una pelicula?"
+  - text: "Dime si te interesa ver una pelicula!"
+  - text: "¿Estas interesado en ver peliculas?"
+
+  utter_thanks:
+  - text: "De nada!"
+  - text: "Me alegra ser de ayuda!"
+  - text: "No hay de que!"
+  
+  utter_ask:
+  - text: "Necesitas algo mas?"
+  - text: "Algo mas en lo que pueda ayudarte?"
+
+  utter_ask_name:
+  - text: "Dime, con quien hablo?"
+  - text: "Cual es tu nombre?"
+  - text: "Como te llamas?"
+
+  utter_greet:
+  - text: "Hola! Soy a quien buscas para que te recomiende la mejor pelicula!"
+  - text: "Buenas! Aqui estoy para recomendarte la mejor pelicula!"
+  - text: "Hola! Buscabas a alguien que te recomendara buenas peliculas?"
+  - text: "Hola! Estoy para ayudarte a encontrar peliculas!"
+
+  utter_welcome:
+  - text: "Un gusto conocerte, {nombre}!. Dime, como te encuentras?"
+  - text: "Que tal, {nombre}!. Cual es tu estado de animo hoy?"
+
+  utter_mood:
+  - text: "Yo bien!"
+  - text: "Genial"
+  - text: "Bien bien!"
+  - text: "Perfecto!"
+
+  utter_cheer_up:
+  - text: "Que te parece este plan para estar mejor"
+    image: "https://cdn.buenavibra.es/wp-content/uploads/2018/05/03092006/bigstock-A-Wooden-Bowl-Of-Popcorn-And-T-236238289-1170x600.jpg"
+
+  utter_did_that_help:
+  - text: "Te fue de ayuda?"
+  - text: "Te fue util?"
+
+  utter_happy:
+  - text: "Buenisimo"
+  - text: "Estupendo!"
+
+  utter_iamabot:
+  - text: "Yo? un bot? Por dios..."
+  - text: "Cooooomo?"
+  - text: "Ojo con lo que preguntas!!"
+  - text: "Que estas insinuando.."
+
+  utter_default:
+  - text: "Lo siento, no te entiendo. Podrias reformular la pregunta?"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

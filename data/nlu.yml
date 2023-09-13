@@ -1,0 +1,161 @@
+version: "3.1"
+
+nlu:
+
+- intent: inform_genre
+  examples: |
+    - de [accion](genero_pelicula)
+    - me gusta de [fantasia](genero_pelicula)
+    - [amor](genero_pelicula)
+    - de [comedia](genero_pelicula) 
+
+- intent: see_movie
+  examples: |
+    - Quiero ver una pelicula
+    - Me interesa ver una pelicula
+    - Quiero ver una
+    - Que pelicula puedes ofrecerme
+    - Que pelicula me recomendas
+    - Que pelicula puedo mirar
+    - Me ofreces algunas peliculas
+
+- intent: positive_feedback
+  examples: |
+    - te agradezco
+    - muy bien!
+    - perfecto!
+    - muchisimas gracias
+    - muchisimas gracias por tu ayuda
+    - muchas gracias
+    - gracias
+    - gracias!
+    - thanks
+    - fuiste de gran ayuda
+    - estoy agradecido
+    - genial, gracias!
+    - buenisimo gracias
+
+- intent: greet
+  examples: |
+    - hola
+    - holis
+    - buenas
+    - holo!
+    - buen dia
+    - buenas tardes
+    - buenas noches
+    - hey
+    - que onda
+    - que tal
+    - ola
+
+- intent: presentation
+  examples: |
+      - Mi nombre es [Juan](nombre)
+      - Soy [Agustin](nombre)
+      - Llámame [Analia](nombre)
+      - Es [Pedro](nombre)
+      - [Maria](nombre)
+
+- intent: mood
+  examples: |
+    - estoy [feliz]{"entity": "estado_animo", "value": "feliz"}
+    - estoy [triste]{"entity": "estado_animo", "value": "triste"}
+    - super [triste]{"entity": "estado_animo", "value": "triste"}
+    - estoy [furioso] {"entity": "estado_animo", "value": "enojado"}
+    - me siento [enojado]{"entity": "estado_animo", "value": "enojado"}
+    - [aburrido]{"entity": "estado_animo", "value": "aburrido"}
+    - estoy [normal]{"entity": "estado_animo", "value": "normal"}
+    - [bien]{"entity": "estado_animo", "value": "feliz"}
+    - me siento [bien]{"entity": "estado_animo", "value": "feliz"}
+    - me encuentro [mal]{"entity": "estado_animo", "value": "triste"}
+    - [mal]{"entity": "estado_animo", "value": "triste"}
+    - re [bien]{"entity": "estado_animo", "value": "feliz"}
+
+- intent: how_are_you
+  examples: |
+    - como estas?
+    - vos como estas?
+    - vos todo bien?
+    - todo bien?
+    - como andas
+    - vos como andas
+    - vos?
+    - como te encuentras
+
+- intent: goodbye
+  examples: |
+    - adios!
+    - chau!
+    - hasta la proxima
+    - bye
+    - nos vemos
+    - nos estamos viendo
+    - que tengas un buen dia
+    - chau chau
+    - chauuu
+    - adioss
+    - despues hablamos
+    - hablamos luego
+
+- intent: affirm
+  examples: |
+    - si
+    - s
+    - claro
+    - por supuesto
+    - me vendria bien
+    - me ayudaria mucho
+    - seria estupendo
+    - seria genial
+    - si, por favor
+    - dale
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - nunca
+    - no me parece
+    - no es necesario
+    - de ningun modo
+    - na
+    - no lo necesito
+    - nono
+    - nono esta bien
+    - no gracias
+
+- intent: mood_great
+  examples: |
+    - perfecto
+    - genial
+    - increible
+    - me siento bien
+    - estoy re bien
+    - me siento increible
+    - me siento genial
+    - soy increible
+    - esto euforico
+    - extremadamente bien
+    - muy perfecto
+    - demasiado bien
+    - joya
+    - bien
+
+- intent: bot_challenge
+  examples: |
+    - sos un bot?
+    - eres un bot?
+    - sos un humano?
+    - eres un humano?
+    - estoy hablando con un bot?
+    - estoy hablando con un humano?
+    - sos un robot?
+    - eres una inteligencia artificial?
+
+- intent: fallback
+  examples: |
+    - Que hora es?
+    - Que dia es?
+    - En que año estamos?
+    - asdfg

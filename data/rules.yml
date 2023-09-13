@@ -1,0 +1,14 @@
+version: "3.1"
+
+rules:
+
+
+- rule: how are you
+  steps:
+  - intent: how_are_you
+  - action: utter_mood
+
+- rule: I'm not a bot
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot

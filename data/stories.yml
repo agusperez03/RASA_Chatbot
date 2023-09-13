@@ -1,0 +1,52 @@
+version: "3.1"
+
+stories:
+
+- story: greeting
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_name
+  - intent: presentation
+    entities:
+    - nombre: "Agustin"
+  - slot_was_set:
+    - nombre: "Agustin"
+  - action: utter_welcome 
+  - intent: mood
+    entities:
+    - estado_animo: "feliz"
+  - slot_was_set:
+    - estado_animo: "feliz" 
+  - action: action_based_on_mood
+  - action: utter_want_movie
+  - or:
+    - intent: see_movie
+    - intent: affirm
+  - action: utter_ask_genre
+  - intent: inform_genre
+    entities:
+    - genero_pelicula: "accion"
+  - slot_was_set:
+    - genero_pelicula: "accion" 
+  - action: action_recomendar_pelicula
+
+- story: thanks goodbye
+  steps:
+  - intent: positive_feedback
+  - action: utter_thanks
+  - intent: goodbye
+  - action: action_custom_goobye 
+
+- story: dont_want_movie
+  steps:
+  - action: utter_want_movie
+  - intent: deny
+  - action: utter_dont_want_movie
+  - action: utter_ask
+
+#- story: nUnderstand
+#  steps:
+#  - intent: nUnderstand
+#  - action: utter_default
+

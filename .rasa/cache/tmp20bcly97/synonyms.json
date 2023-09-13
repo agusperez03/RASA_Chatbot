@@ -1,0 +1,18 @@
+{
+  "bien": "feliz",
+  "feliz": "feliz",
+  "mal": "triste",
+  "triste": "triste",
+  "accion": "accion",
+  "fantasia": "fantasia",
+  "amor": "amor",
+  "comedia": "comedia",
+  "juan": "Juan",
+  "agustin": "Agustin",
+  "analia": "Analia",
+  "pedro": "Pedro",
+  "maria": "Maria",
+  "enojado": "enojado",
+  "aburrido": "aburrido",
+  "normal": "normal"
+}
