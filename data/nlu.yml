@@ -2,6 +2,20 @@ version: "3.1"
 
 nlu:
 
+- intent: want_sinopsis
+  examples: |
+    - cuanto dura?
+    - me podrias decir de que trata?
+    - me podrias decir cuanto dura?
+    - cual es la duracion?
+    - de que trata?
+    - de que es la pelicula?
+    - cuanto tiempo dura
+    - que temas trata?
+    - me darias un resumen
+    - me darias su sinopsis
+    - tienes la sinopsis?
+
 - intent: inform_genre
   examples: |
     - de [accion](genero_pelicula)
@@ -11,18 +25,17 @@ nlu:
 
 - intent: see_movie
   examples: |
-    - Quiero ver una pelicula
-    - Me interesa ver una pelicula
-    - Quiero ver una
-    - Que pelicula puedes ofrecerme
-    - Que pelicula me recomendas
-    - Que pelicula puedo mirar
-    - Me ofreces algunas peliculas
+    - quiero ver una pelicula
+    - me interesa ver una pelicula
+    - quiero ver una
+    - que pelicula puedes ofrecerme
+    - que pelicula me recomendas
+    - que pelicula puedo mirar
+    - me ofreces algunas peliculas
 
 - intent: positive_feedback
   examples: |
     - te agradezco
-    - muy bien!
     - perfecto!
     - muchisimas gracias
     - muchisimas gracias por tu ayuda
@@ -76,8 +89,7 @@ nlu:
   examples: |
     - como estas?
     - vos como estas?
-    - vos todo bien?
-    - todo bien?
+    - ¿todo bien?
     - como andas
     - vos como andas
     - vos?
@@ -104,7 +116,6 @@ nlu:
     - s
     - claro
     - por supuesto
-    - me vendria bien
     - me ayudaria mucho
     - seria estupendo
     - seria genial
@@ -122,7 +133,6 @@ nlu:
     - na
     - no lo necesito
     - nono
-    - nono esta bien
     - no gracias
 
 - intent: mood_great
@@ -130,17 +140,12 @@ nlu:
     - perfecto
     - genial
     - increible
-    - me siento bien
-    - estoy re bien
     - me siento increible
     - me siento genial
     - soy increible
     - esto euforico
-    - extremadamente bien
     - muy perfecto
-    - demasiado bien
     - joya
-    - bien
 
 - intent: bot_challenge
   examples: |
@@ -153,9 +158,9 @@ nlu:
     - sos un robot?
     - eres una inteligencia artificial?
 
-- intent: fallback
-  examples: |
-    - Que hora es?
-    - Que dia es?
-    - En que año estamos?
-    - asdfg
+#- intent: fallback
+#  examples: |
+#    - Que hora es?
+#    - Que dia es?
+#    - En que año estamos?
+#    - asdfg

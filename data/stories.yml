@@ -30,13 +30,23 @@ stories:
   - slot_was_set:
     - genero_pelicula: "accion" 
   - action: action_recomendar_pelicula
+  - slot_was_set:
+    - sinopsis_pelicula: "Rapidos y Furiosos 9 es una pelicula de accion y ciencia ficcion del 2021 con una duracion de 142 minutos. La trama sigue a Dominic Toretto y su equipo mientras se enfrentan a un enemigo peligroso y poderoso." 
 
-- story: thanks goodbye
+- story: what about
+  steps:
+  - intent: want_sinopsis
+  - action: utter_give_sinopsis
+
+- story: positive feedback
   steps:
   - intent: positive_feedback
   - action: utter_thanks
-  - intent: goodbye
-  - action: action_custom_goobye 
+  - action: utter_ask
+  - intent: deny
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
 
 - story: dont_want_movie
   steps:

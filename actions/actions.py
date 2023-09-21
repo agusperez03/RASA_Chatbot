@@ -26,6 +26,25 @@ from rasa_sdk.events import SlotSet
 from pyswip import Prolog
 import ast
 
+class ActionCustomGoodbye(Action):
+    def name(self) -> Text:
+        return "action_custom_goodbye"
+    
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        mood = tracker.get_slot("estado_animo")
+        name = tracker.get_slot("nombre")
+
+        if mood == "feliz":
+            dispatcher.utter_message(f"Nos vemos, {name}! Que sigas bien!")
+        elif mood == "triste":
+            dispatcher.utter_message(f"Nos vemos, {name}. Espero que te sientas mejor.")
+        elif mood == "enojado":
+            dispatcher.utter_message(f"Nos vemos, {name}. Ojala haya podido ser de ayuda.")
+        else:
+            dispatcher.utter_message(f"Nos vemos, {name}!")
+                
+        return[]
+
 class ActionRecomendarPelicula(Action):
     def name(self) -> Text:
         return "action_recomendar_pelicula"
@@ -37,12 +56,15 @@ class ActionRecomendarPelicula(Action):
         
         prolog = Prolog()
         prolog.consult("c:/Users/Usuario/ChatBotNetflix/recomendar_pelicula.pl")
-        result = list(prolog.query(f"obtener_pelicula_recomendada('{estado_animo}', '{genero}', PeliculaRecomendada)."))
-        if result:
-            pelicula = result[0]['PeliculaRecomendada']
-            dispatcher.utter_message(text=f"Te recomiendo la película: {pelicula}")
+        for solucion in prolog.query(f"obtener_pelicula_recomendada('{estado_animo}', '{genero}', Pelicula, Sinopsis)"):
+            pelicula_recomendada = solucion["Pelicula"]
+            sinopsis_pelicula = solucion["Sinopsis"]
 
-        return []
+        if pelicula_recomendada:
+            dispatcher.utter_message(text=f"Te recomiendo la película: {pelicula_recomendada}")
+
+
+        return [SlotSet("sinopsis_pelicula", sinopsis_pelicula)]
 
 class ActionBasedOnMood(Action):
     def name(self) -> Text:
@@ -65,26 +87,6 @@ class ActionBasedOnMood(Action):
             dispatcher.utter_message("Te tengo un plan..")
 
         return []
-
-class ActionCustomGoodbye(Action):
-
-    def name(self) -> Text:
-        return "action_custom_goodbye"
-    
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        mood = tracker.get_slot("estado_animo")
-        name = tracker.get_slot("nombre")
-
-        if mood == "feliz":
-            dispatcher.utter_message("Nos vemos, {}! Que sigas bien!".format(name))
-        elif mood == "triste":
-            dispatcher.utter_message("Nos vemos, {}. Espero que te sientas mejor.".format(name))
-        elif mood == "enojado":
-            dispatcher.utter_message("Nos vemos, {}. Ojala haya podido ser de ayuda.".format(name))
-        else:
-            dispatcher.utter_message("Nos vemos, {}!".format(name))
-                
-        return[]
 
 class ActionDefaultFallback(Action):
     def name(self) -> Text:

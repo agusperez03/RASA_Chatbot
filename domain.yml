@@ -4,11 +4,12 @@ config:
   store_entities_as_slots: true
 
 actions:
+  - action_custom_goodbye
   - action_recomendar_pelicula
   - action_based_on_mood
-  - action_custom_goodbye
 
 intents:
+  - want_sinopsis
   - inform_genre
   - see_movie
   - positive_feedback
@@ -20,14 +21,14 @@ intents:
   - affirm
   - deny
   - mood_great
-  - mood_unhappy
   - bot_challenge
-  - nUnderstand
+  - fallback
 
 entities:
   - nombre
   - estado_animo
   - genero_pelicula
+  - sinopsis_pelicula
 
 slots:
   nombre:
@@ -48,9 +49,18 @@ slots:
       - type: from_entity
         intent: inform_genre
         entity: genero_pelicula
+  sinopsis_pelicula:
+    type: text
+    mappings:
+      - type: from_entity
+        intent: inform_genre
+        entity: sinopsis_pelicula
     
 
 responses:
+
+  utter_give_sinopsis:
+  - text: "Esto es lo que te puedo contar! {sinopsis_pelicula}"
 
   utter_ask_genre:
   - text: "Genial! ¿De que genero te gustaria?"
@@ -93,13 +103,9 @@ responses:
   - text: "Bien bien!"
   - text: "Perfecto!"
 
-  utter_cheer_up:
-  - text: "Que te parece este plan para estar mejor"
-    image: "https://cdn.buenavibra.es/wp-content/uploads/2018/05/03092006/bigstock-A-Wooden-Bowl-Of-Popcorn-And-T-236238289-1170x600.jpg"
-
   utter_did_that_help:
-  - text: "Te fue de ayuda?"
-  - text: "Te fue util?"
+  - text: "¿Te fui de ayuda?"
+  - text: "¿Pude ayudarte con lo que necesitabas?"
 
   utter_happy:
   - text: "Buenisimo"
