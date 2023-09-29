@@ -1,0 +1,44 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-estado_animo",
+      "2": "I-estado_animo",
+      "3": "L-estado_animo",
+      "4": "U-estado_animo",
+      "5": "B-genero_pelicula",
+      "6": "I-genero_pelicula",
+      "7": "L-genero_pelicula",
+      "8": "U-genero_pelicula",
+      "9": "B-nombre",
+      "10": "I-nombre",
+      "11": "L-nombre",
+      "12": "U-nombre",
+      "13": "B-respuesta1",
+      "14": "I-respuesta1",
+      "15": "L-respuesta1",
+      "16": "U-respuesta1",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-estado_animo": 1,
+      "I-estado_animo": 2,
+      "L-estado_animo": 3,
+      "U-estado_animo": 4,
+      "B-genero_pelicula": 5,
+      "I-genero_pelicula": 6,
+      "L-genero_pelicula": 7,
+      "U-genero_pelicula": 8,
+      "B-nombre": 9,
+      "I-nombre": 10,
+      "L-nombre": 11,
+      "U-nombre": 12,
+      "B-respuesta1": 13,
+      "I-respuesta1": 14,
+      "L-respuesta1": 15,
+      "U-respuesta1": 16,
+      "O": 0
+    },
+    "num_tags": 17
+  }
+]

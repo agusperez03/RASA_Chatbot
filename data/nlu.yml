@@ -2,6 +2,40 @@ version: "3.1"
 
 nlu:
 
+- intent: response1
+# Cerrado = Pelicula ; Abierto = Serie
+  examples: |
+    - prefiero con final cerrado [cerrado](respuesta1)
+    - con final cerrado [cerrado](respuesta1)
+    - con futuras temporadas [abierto](respuesta1)
+    - con final abierto [abierto](respuesta1)
+    - prefiero con final abierto [abierto](respuesta1)
+
+- intent: response2
+# Estaticos = Pelicula ; Evolucionan = Serie
+  examples: |
+    - prefiero con personajes que van evolucionando [evolucionan](respuesta2)
+    - con personajes que evolucionan [evolucionan](respuesta2)
+    - que van evolucionando [evolucionan](respuesta2)
+    - prefiero estaticos [estaticos](respuesta2)
+    - con personajes mas estaticos [estaticos](respuesta2)
+    - estaticos [estaticos](respuesta2)
+
+- intent: response3
+# Rapido = Pelicula ; Lento = Serie
+  examples: |
+    - con un ritmo mas lento [lento](respuesta3)
+    - lento [lento](respuesta3)
+    - con un ritmo rapido [rapido](respuesta3)
+    - rapido y emocionante [rapido](respuesta3)
+    - rapido [rapido](respuesta3)
+
+- intent: want_recomendation
+  examples: |
+    - Que me recomiendas
+    - Que podria ver hoy
+    - Dame una recomendacion
+
 - intent: want_sinopsis
   examples: |
     - cuanto dura?
@@ -22,12 +56,13 @@ nlu:
     - me gusta de [fantasia](genero_pelicula)
     - [amor](genero_pelicula)
     - de [comedia](genero_pelicula) 
+    - [triste](genero_pelicula) por favor
+    - una [triste](genero_pelicula)
 
 - intent: see_movie
   examples: |
     - quiero ver una pelicula
     - me interesa ver una pelicula
-    - quiero ver una
     - que pelicula puedes ofrecerme
     - que pelicula me recomendas
     - que pelicula puedo mirar
@@ -126,12 +161,10 @@ nlu:
   examples: |
     - no
     - n
-    - nunca
     - no me parece
     - no es necesario
     - de ningun modo
     - na
-    - no lo necesito
     - nono
     - no gracias
 

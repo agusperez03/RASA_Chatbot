@@ -9,6 +9,10 @@ actions:
   - action_based_on_mood
 
 intents:
+  - response1
+  - response2
+  - response3
+  - want_recomendation
   - want_sinopsis
   - inform_genre
   - see_movie
@@ -29,6 +33,9 @@ entities:
   - estado_animo
   - genero_pelicula
   - sinopsis_pelicula
+  - respuesta1
+  - respuesta2
+  - respuesta3
 
 slots:
   nombre:
@@ -55,9 +62,36 @@ slots:
       - type: from_entity
         intent: inform_genre
         entity: sinopsis_pelicula
+  respuesta1:
+    type: text
+    mappings:
+      - type: from_entity
+        intent: response1
+        entity: respuesta1
+  respuesta2:
+    type: text
+    mappings:
+      - type: from_entity
+        intent: response2
+        entity: respuesta2
+  respuesta3:
+    type: text
+    mappings:
+      - type: from_entity
+        intent: response3
+        entity: respuesta3
     
 
 responses:
+
+  utter_question1:
+  - text: "Veamos que puedo hacer! Dime, ¿Prefieres ver historias con un final cerrado o con posibilidad de continuar en futuras temporadas?"
+
+  utter_question2:
+  - text: "¿Te gusta ver historias con personajes que evolucionan a lo largo de la trama o con personajes más estáticos?"
+
+  utter_question3:
+  - text: "¿Te gusta ver historias con un ritmo más lento y detallado o con un ritmo más rápido y emocionante?"
 
   utter_give_sinopsis:
   - text: "Esto es lo que te puedo contar! {sinopsis_pelicula}"
@@ -123,3 +157,4 @@ responses:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
