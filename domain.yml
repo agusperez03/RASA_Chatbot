@@ -7,6 +7,7 @@ actions:
   - action_custom_goodbye
   - action_recomendar_pelicula
   - action_based_on_mood
+  - action_recomendacion
 
 intents:
   - response1
@@ -85,7 +86,7 @@ slots:
 responses:
 
   utter_question1:
-  - text: "Veamos que puedo hacer! Dime, ¿Prefieres ver historias con un final cerrado o con posibilidad de continuar en futuras temporadas?"
+  - text: "Veamos que puedo hacer! Dime, ¿Prefieres ver historias con un final cerrado o con finales abiertos / futuras temporadas?"
 
   utter_question2:
   - text: "¿Te gusta ver historias con personajes que evolucionan a lo largo de la trama o con personajes más estáticos?"

@@ -54,7 +54,7 @@ stories:
     - respuesta3: "lento"
   - slot_was_set:
     - respuesta3: "lento"
-  #Continuar con arbol de decision
+  - action: action_recomendacion
 
 - story: what about
   steps:

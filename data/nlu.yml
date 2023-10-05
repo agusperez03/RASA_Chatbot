@@ -8,7 +8,7 @@ nlu:
     - prefiero con final cerrado [cerrado](respuesta1)
     - con final cerrado [cerrado](respuesta1)
     - con futuras temporadas [abierto](respuesta1)
-    - con final abierto [abierto](respuesta1)
+    - con finales abiertos [abierto](respuesta1)
     - prefiero con final abierto [abierto](respuesta1)
 
 - intent: response2
