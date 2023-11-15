@@ -2,6 +2,13 @@ version: "3.1"
 
 nlu:
 
+- intent: want_serie
+  examples: |
+    - Que series tenes?
+    - Que series me recomendas
+    - Que serie podria ver
+    - Que serie deberia mirar
+
 - intent: response1
 # Cerrado = Pelicula ; Abierto = Serie
   examples: |
@@ -10,6 +17,7 @@ nlu:
     - con futuras temporadas [abierto](respuesta1)
     - con finales abiertos [abierto](respuesta1)
     - prefiero con final abierto [abierto](respuesta1)
+    - con final abierto [abierto](respuesta1)
 
 - intent: response2
 # Estaticos = Pelicula ; Evolucionan = Serie
@@ -83,19 +91,30 @@ nlu:
     - genial, gracias!
     - buenisimo gracias
 
-- intent: greet
+- intent: greet_happy
   examples: |
     - hola
     - holis
-    - buenas
-    - holo!
-    - buen dia
-    - buenas tardes
-    - buenas noches
-    - hey
-    - que onda
-    - que tal
-    - ola
+    - buenos dias!
+    - buenas tardess!
+    - buenas nochess 
+    - buenaaaaaas 
+
+- intent: greet_sad
+  examples: |
+    - hey.. 
+    - hola... hoy ando triste
+    - supongo que... hola
+    - hola, no he tenido un buen día.
+    - buen dia, aunque no sea tan bueno para mí
+    - hola, hoy no estoy con todas las ganas..
+
+- intent: greet_mad
+  examples: |
+    - que onda...
+    - hola.. estoy enojado
+    - hola.. hoy me esta saliendo todo mal
+    - hola, hoy me fue mal
 
 - intent: presentation
   examples: |
@@ -104,21 +123,6 @@ nlu:
       - Llámame [Analia](nombre)
       - Es [Pedro](nombre)
       - [Maria](nombre)
-
-- intent: mood
-  examples: |
-    - estoy [feliz]{"entity": "estado_animo", "value": "feliz"}
-    - estoy [triste]{"entity": "estado_animo", "value": "triste"}
-    - super [triste]{"entity": "estado_animo", "value": "triste"}
-    - estoy [furioso] {"entity": "estado_animo", "value": "enojado"}
-    - me siento [enojado]{"entity": "estado_animo", "value": "enojado"}
-    - [aburrido]{"entity": "estado_animo", "value": "aburrido"}
-    - estoy [normal]{"entity": "estado_animo", "value": "normal"}
-    - [bien]{"entity": "estado_animo", "value": "feliz"}
-    - me siento [bien]{"entity": "estado_animo", "value": "feliz"}
-    - me encuentro [mal]{"entity": "estado_animo", "value": "triste"}
-    - [mal]{"entity": "estado_animo", "value": "triste"}
-    - re [bien]{"entity": "estado_animo", "value": "feliz"}
 
 - intent: how_are_you
   examples: |
@@ -190,10 +194,3 @@ nlu:
     - estoy hablando con un humano?
     - sos un robot?
     - eres una inteligencia artificial?
-
-#- intent: fallback
-#  examples: |
-#    - Que hora es?
-#    - Que dia es?
-#    - En que año estamos?
-#    - asdfg

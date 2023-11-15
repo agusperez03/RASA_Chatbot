@@ -5,26 +5,56 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 
-# This is a simple example for a custom action which utters "Hello World!"
-# class ActionHelloWorld(Action):
-#
-#     def name(self) -> Text:
-#         return "action_hello_world"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         dispatcher.utter_message(text="Hello World!")
-#
-#         return []
-
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from pyswip import Prolog
 import ast
+import requests
+from bs4 import BeautifulSoup
+from unidecode import unidecode
+
+class ActionObtenerSeriesMasVistas(Action):
+
+    def name(self) -> Text:
+        return "action_top_10_series"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # URL de la página web que contiene la información sobre las series más vistas
+        url_pagina_series = 'https://www.netflix.com/tudum/top10/es/tv-non-english'
+
+        # Realizar la solicitud HTTP
+        respuesta = requests.get(url_pagina_series)
+
+        # Verificar si la solicitud fue exitosa (código de estado 200)
+        if respuesta.status_code == 200:
+            # Parsear el contenido HTML con BeautifulSoup
+            soup = BeautifulSoup(respuesta.text, 'html.parser')
+
+            # Encuentra las series más vistas en el HTML de la página web
+            series_mas_vistas = soup.find_all('tr', {'data-id': True})
+
+            # Mostrar las 10 series más vistas
+            mensaje = "Las 10 series más vistas actualmente son:"
+            for i, serie in enumerate(series_mas_vistas[:10], start=1):
+                # Extraer información de cada serie
+                nombre_serie = serie.find('td', class_='tbl-cell-name').text.strip()
+
+                # Le quito los tildes si los tiene
+                nombre_serie = unidecode(nombre_serie)
+
+                # Construir el mensaje
+                mensaje += f"\n{i}. {nombre_serie}"
+
+            # Enviar el mensaje al usuario a través del dispatcher
+            dispatcher.utter_message(text=mensaje)
+        else:
+            # Enviar mensaje de error al usuario
+            dispatcher.utter_message(text=f"Error al obtener la página. Código de estado: {respuesta.status_code}")
+
+        return []
+
 
 class ActionRecomendacion(Action):
     def name(self) -> Text:
@@ -73,6 +103,7 @@ class ActionRecomendacion(Action):
             dispatcher.utter_message(text="Te recomiendo mirar una pelicula, puedes preguntarme por opciones y te ayudare con gusto!")
 
         return[]
+    
 class ActionCustomGoodbye(Action):
     def name(self) -> Text:
         return "action_custom_goodbye"
@@ -118,22 +149,28 @@ class ActionBasedOnMood(Action):
         return "action_based_on_mood"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        estado_animo = tracker.get_slot("estado_animo")
+        
+        # Obtener el intent detectado
+        intent = tracker.latest_message['intent'].get('name')
 
-        if estado_animo == "feliz":
-            dispatcher.utter_message("Me alegro! Que siga asi!")
-
-        elif estado_animo == "triste":
-            dispatcher.utter_message("Lamento que te sientas asi, mira la siguiente imagen y dime..")
+        # Lógica para establecer el valor del slot basado en el intent
+        if intent == 'greet_happy':
+            slot_value = 'feliz'
+            dispatcher.utter_message("Hola! Aqui te habla tu asesor de Netflix!")
+        elif intent == 'greet_sad':
+            slot_value = 'triste'
+            dispatcher.utter_message("Holaa! Estas listo para un buen plan que suba ese estado de animo?!")
             dispatcher.utter_image_url("https://cdn.buenavibra.es/wp-content/uploads/2018/05/03092006/bigstock-A-Wooden-Bowl-Of-Popcorn-And-T-236238289-1170x600.jpg")
-
-        elif estado_animo == "enojado":
-            dispatcher.utter_message("Tal vez necesitas relajarte..")
-
+        elif intent == 'greet_mad':
+            slot_value = 'enojado'
+            dispatcher.utter_message("Buenas! Tal vez necesitas relajarte..")
         else:
-            dispatcher.utter_message("Te tengo un plan..")
+            # Valor predeterminado o manejo de casos no específicos
+            slot_value = 'normal'
+            dispatcher.utter_message("Hola! Aqui te habla tu asesor de Netflix!")
 
-        return []
+        # Establecer el valor del slot
+        return [SlotSet('estado_animo', slot_value)]
 
 class ActionDefaultFallback(Action):
     def name(self) -> Text:
@@ -187,5 +224,5 @@ model = DecisionTreeClassifier(max_depth=3)
 model.fit(x,y)
 
 # pasamos las features y el target para que nos diga que tan bien predice
-#print("ACCURACY DEL MODELO....................................................")
-#print(model.score(x, y))
+print("ACCURACY DEL MODELO....................................................")
+print(model.score(x, y))

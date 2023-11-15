@@ -4,12 +4,14 @@ config:
   store_entities_as_slots: true
 
 actions:
+  - action_top_10_series
   - action_custom_goodbye
   - action_recomendar_pelicula
-  - action_based_on_mood
   - action_recomendacion
+  - action_based_on_mood
 
 intents:
+  - want_serie
   - response1
   - response2
   - response3
@@ -18,7 +20,9 @@ intents:
   - inform_genre
   - see_movie
   - positive_feedback
-  - greet
+  - greet_happy
+  - greet_sad
+  - greet_mad
   - presentation
   - mood
   - how_are_you
@@ -49,7 +53,7 @@ slots:
     type: text
     mappings:
       - type: from_entity
-        intent: mood
+        intent: greet
         entity: estado_animo
   genero_pelicula:
     type: text
@@ -85,6 +89,10 @@ slots:
 
 responses:
 
+  utter_serie:
+  - text: "Puedes elegir la que mas te interese!" 
+  - text: "Estoy seguro que alguna de estas te gustara!" 
+
   utter_question1:
   - text: "Veamos que puedo hacer! Dime, ¿Prefieres ver historias con un final cerrado o con finales abiertos / futuras temporadas?"
 
@@ -118,19 +126,12 @@ responses:
   - text: "Algo mas en lo que pueda ayudarte?"
 
   utter_ask_name:
-  - text: "Dime, con quien hablo?"
-  - text: "Cual es tu nombre?"
-  - text: "Como te llamas?"
-
-  utter_greet:
-  - text: "Hola! Soy a quien buscas para que te recomiende la mejor pelicula!"
-  - text: "Buenas! Aqui estoy para recomendarte la mejor pelicula!"
-  - text: "Hola! Buscabas a alguien que te recomendara buenas peliculas?"
-  - text: "Hola! Estoy para ayudarte a encontrar peliculas!"
+  - text: "Dime, ¿cual es tu nombre?"
+  - text: "¿Como te llamas?"
 
   utter_welcome:
-  - text: "Un gusto conocerte, {nombre}!. Dime, como te encuentras?"
-  - text: "Que tal, {nombre}!. Cual es tu estado de animo hoy?"
+  - text: "Un gusto conocerte, {nombre}!."
+  - text: "Que tal, {nombre}!."
 
   utter_mood:
   - text: "Yo bien!"

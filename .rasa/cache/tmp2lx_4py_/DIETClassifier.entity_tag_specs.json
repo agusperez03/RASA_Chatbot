@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-genero_pelicula",
+      "2": "I-genero_pelicula",
+      "3": "L-genero_pelicula",
+      "4": "U-genero_pelicula",
+      "5": "B-nombre",
+      "6": "I-nombre",
+      "7": "L-nombre",
+      "8": "U-nombre",
+      "9": "B-respuesta1",
+      "10": "I-respuesta1",
+      "11": "L-respuesta1",
+      "12": "U-respuesta1",
+      "13": "B-respuesta2",
+      "14": "I-respuesta2",
+      "15": "L-respuesta2",
+      "16": "U-respuesta2",
+      "17": "B-respuesta3",
+      "18": "I-respuesta3",
+      "19": "L-respuesta3",
+      "20": "U-respuesta3",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-genero_pelicula": 1,
+      "I-genero_pelicula": 2,
+      "L-genero_pelicula": 3,
+      "U-genero_pelicula": 4,
+      "B-nombre": 5,
+      "I-nombre": 6,
+      "L-nombre": 7,
+      "U-nombre": 8,
+      "B-respuesta1": 9,
+      "I-respuesta1": 10,
+      "L-respuesta1": 11,
+      "U-respuesta1": 12,
+      "B-respuesta2": 13,
+      "I-respuesta2": 14,
+      "L-respuesta2": 15,
+      "U-respuesta2": 16,
+      "B-respuesta3": 17,
+      "I-respuesta3": 18,
+      "L-respuesta3": 19,
+      "U-respuesta3": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]

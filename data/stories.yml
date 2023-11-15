@@ -2,23 +2,32 @@ version: "3.1"
 
 stories:
 
-- story: greeting
+- story: greeting_happy
   steps:
-  - intent: greet
-  - action: utter_greet
+  - intent: greet_happy
+  - action: action_based_on_mood
   - action: utter_ask_name
+
+- story: greeting_sad
+  steps:
+  - intent: greet_sad
+  - action: action_based_on_mood
+  - action: utter_ask_name
+
+- story: greeting_mad
+  steps:
+  - intent: greet_mad
+  - action: action_based_on_mood
+  - action: utter_ask_name
+
+- story: welcome
+  steps:
   - intent: presentation
     entities:
     - nombre: "Agustin"
   - slot_was_set:
     - nombre: "Agustin"
   - action: utter_welcome 
-  - intent: mood
-    entities:
-    - estado_animo: "feliz"
-  - slot_was_set:
-    - estado_animo: "feliz" 
-  - action: action_based_on_mood
   - action: utter_want_movie
   - or:
     - intent: see_movie
@@ -39,9 +48,9 @@ stories:
   - action: utter_question1
   - intent: response1
     entities:
-    - respuesta1: "cerrado"
+    - respuesta1: "abierto"
   - slot_was_set:
-    - respuesta1: "cerrado" 
+    - respuesta1: "abierto" 
   - action: utter_question2
   - intent: response2
     entities:
@@ -55,6 +64,12 @@ stories:
   - slot_was_set:
     - respuesta3: "lento"
   - action: action_recomendacion
+
+- story: want_series
+  steps:
+  - intent: want_serie
+  - action: action_top_10_series
+  - action: utter_serie
 
 - story: what about
   steps:
