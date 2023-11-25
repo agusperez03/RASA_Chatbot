@@ -1,8 +1,7 @@
 Chatbot in Rasa
 
-This repository is a chatbot developed in Rasa. It's about Netflix recomendations to see a serie or a movie.
-
 Installation
+This repository is a chatbot developed in Rasa. It's about Netflix recomendations to see a serie or a movie (in Spanish).
 If you dont have python 3.9.12, use a virtual enviroment as Anaconda, download and install it. Then you need Python, currently using version 3.9.12
 
 Once you have both of them, get inside the terminal and create a virtual enviroment and excute, (without the ").
