@@ -1,6 +1,6 @@
 <h1>Chatbot in Rasa</h1>
 
-<h3><b>Check the video to see how it works!</b></h3>
+<h3><b>Check this <a href="https://drive.google.com/file/d/16qgnMHNIXX51QoVxQZG_RlvgCA9dZQU3/view?usp=sharing">VIDEO</a> to see how it works.</b></h3>
 
 <h2>Installation</h2>
 This repository is a chatbot developed in Rasa. It's about Netflix recomendations to see a serie or a movie (in Spanish).
