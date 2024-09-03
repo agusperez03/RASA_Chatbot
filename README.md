@@ -1,8 +1,8 @@
-## Chatbot in Rasa
+<h1>Chatbot in Rasa</h1>
 
-<br>Check the video to see how it works!</br>
+<h3><b>Check the video to see how it works!</b></h3>
 
-<h1>Installation</h1>
+<h2>Installation</h2>
 This repository is a chatbot developed in Rasa. It's about Netflix recomendations to see a serie or a movie (in Spanish).
 If you dont have python 3.9.12, use a virtual enviroment as Anaconda, download and install it. Then you need Python, currently using version 3.9.12
 
@@ -19,7 +19,7 @@ conda install tensorflow
 pip install rasa
 Now you are ready to pull the repository and in the terminal inside the virtual enviroment you can train it, and run it
 
-<h1>Usage</h1>>
+<h2>Usage</h2>
 Once you clone or pull the repository to your local, the you have to train it, so inside your terminal and inside the conda enviroment with rasa you run the next command
 
 rasa train
@@ -30,7 +30,7 @@ After this command finish, in the terminal should appear a "type:" or something 
 
 Now you can talk with the bot in the command console! Try it!
 
-<h1>Also the bot can be connected to Telegram.</h1>
+<h2>Also the bot can be connected to Telegram.</h2>
 
 To use it in Telegram, then you should do some modifications after the installation of rasa. Find where your virtual enviroment is installed, inside that directory go to
 "PathOfYourEnvirment"/RASA/Lib/site-packages/rasa/core/channels/channel.py in windows and "PathOfYourEnvirment"/lib/python3.8/site-packages/rasa/core/channels in linux.
