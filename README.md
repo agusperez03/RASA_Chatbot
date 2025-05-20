@@ -1,4 +1,4 @@
-<h1>Chatbot in Rasa</h1>
+<h1>Netflix Agent using RASA</h1>
 
 <h3><b>Check this <a href="https://drive.google.com/file/d/16qgnMHNIXX51QoVxQZG_RlvgCA9dZQU3/view?usp=sharing">VIDEO</a> to see how it works.</b></h3>
 
