@@ -1,43 +1,120 @@
-<h1>Netflix Agent using RASA</h1>
+# RASA-Powered Netflix Advisor Chatbot
 
-<h3><b>Check this <a href="https://drive.google.com/file/d/16qgnMHNIXX51QoVxQZG_RlvgCA9dZQU3/view?usp=sharing">VIDEO</a> to see how it works.</b></h3>
+Full Spanish Report: https://drive.google.com/file/d/1ipoCHMyh37e2znlnPLmWbLeWb0bfGJNU/view?usp=sharing
 
-<h2>Installation</h2>
-This repository is a chatbot developed in Rasa. It's about Netflix recomendations to see a serie or a movie (in Spanish).
-If you dont have python 3.9.12, use a virtual enviroment as Anaconda, download and install it. Then you need Python, currently using version 3.9.12
+## 📜 Introduction
 
-Once you have both of them, get inside the terminal and create a virtual enviroment and excute, (without the ").
+This project showcases the development of an intelligent conversational agent built with **RASA**, an open-source framework for creating AI-powered chatbots and voice assistants using Machine Learning and Natural Language Understanding (NLU).
 
-create --name "NameOfYourEnviroment" python="YourPythonVersion"
-This command create the virtual enviroment, and everytime you want to get in the enviroment you must run the next command.
+The agent is deployed on **Telegram** and its primary function is to help users choose movies and series to watch on **Netflix**, offering personalized recommendations based on their preferences and mood.
 
-conda activate "NameOfYourEnviroment"
-Once we are in the enviroment, we install the next dependencies, one at time.
+---
 
-conda install ujson
-conda install tensorflow
-pip install rasa
-Now you are ready to pull the repository and in the terminal inside the virtual enviroment you can train it, and run it
+## 🛠️ Technologies and Tools
 
-<h2>Usage</h2>
-Once you clone or pull the repository to your local, the you have to train it, so inside your terminal and inside the conda enviroment with rasa you run the next command
+* **Main Framework:** RASA Open Source
+* **Programming Languages:** Python, Prolog
+* **Messaging Platform:** Telegram API
+* **Key Libraries:**
+  * Pyswip (for Prolog integration)
+  * Pandas & Scikit-learn (for the Decision Tree)
+  * Beautiful Soup (for Web Scraping)
 
-rasa train
-when the train is finished, run the next commands for test it
+---
 
-rasa shell
-After this command finish, in the terminal should appear a "type:" or something as this where you can insert your intention and talk to the chatbot.
+## 🤖 Agent Structure
 
-Now you can talk with the bot in the command console! Try it!
+The bot's architecture is built upon RASA's core components to manage dialogue, understand the user, and execute business logic.
 
-<h2>Also the bot can be connected to Telegram.</h2>
+### 1. Natural Language Understanding (NLU)
 
-To use it in Telegram, then you should do some modifications after the installation of rasa. Find where your virtual enviroment is installed, inside that directory go to
-"PathOfYourEnvirment"/RASA/Lib/site-packages/rasa/core/channels/channel.py in windows and "PathOfYourEnvirment"/lib/python3.8/site-packages/rasa/core/channels in linux.
-Then inside this python file search for the function "get_metadata()" and change the content to this
+The bot's ability to understand the user is achieved through:
 
-def get_metadata(self, request: Request) -> Optional[Dict[Text, Any]]:
-       metadata = request.json
-       return metadata
+* **`Intents`**: Intentions were defined to capture the purpose of the user's message (e.g., greeting, saying goodbye, asking for a name, requesting a recommendation). The model is trained with multiple examples for each `intent`, allowing the NLU to generalize and recognize variations.
 
-       
+  ```yaml
+  # Example of a goodbye intent
+  - intent: goodbye
+    examples: |
+      - goodbye
+      - bye
+      - see you later
+      - take care
+  ```
+
+* **`Entities`**: Key pieces of information extracted from messages, such as the user's **name**, their **mood**, or their preferred **movie genre**.
+
+### 2. Dialogue Management
+
+The conversation flow is controlled by a combination of rules and stories:
+
+* **`Rules`**: Used to handle fixed and predictable conversation flows. For example, a simple rule states that if the user says goodbye (`intent: goodbye`), the bot should always respond with a farewell message.
+
+* **`Stories`**: Define the more complex and dynamic conversational paths. Stories are sample dialogues that teach the bot how to react to different sequences of intents and events.
+
+### 3. The `Domain`
+
+This is the bot's "brain," where everything the agent knows is defined:
+
+* All `intents`, `entities`, `slots`, and `actions`.
+* **`Responses`**: Message templates that the bot can send to the user. Multiple options can be defined for a single response, and RASA will pick one at random to make the conversation more dynamic.
+
+### 4. `Slots`
+
+These act as the chatbot's memory. They are used to store relevant information throughout the conversation, such as the user's name or preferences. The values in slots can influence the course of the dialogue.
+
+### 5. `Actions`
+
+This is the most powerful part of the bot, allowing the execution of custom **Python** code. In this project, actions were used to:
+
+* Interact with the **Prolog** knowledge base.
+* Implement the **Decision Tree** model.
+* Perform **Web Scraping** to get updated data.
+* Generate complex and personalized responses.
+
+---
+
+## 🧠 Algorithms and Implemented Logic
+
+### 1. Movie Recommendation System with Prolog
+
+**Prolog**, a logic programming language ideal for knowledge representation and rules, was used for movie recommendations.
+
+* **Knowledge Base:** A Prolog file was created with a series of facts that link movies to a specific **mood** and **genre**.
+
+  ```prolog
+  % Fact: movie(Mood, Genre, Title, Synopsis).
+  movie(happy, comedy, 'Superbad', 'Two co-dependent high school seniors...').
+  movie(sad, drama, 'Manchester by the Sea', 'A depressed uncle is asked...').
+  ```
+
+* **Inference Logic:** A predicate `get_recommended_movie/4` was defined. Given a mood and a genre, it searches the knowledge base and randomly returns a movie that matches the criteria.
+
+* **Integration:** A Python `action` queries the Prolog engine, passing the `slots` (mood and genre), and processes the response to deliver it to the user.
+
+### 2. Decision Tree for Series vs. Movies
+
+A **Decision Tree** model was implemented to decide whether to recommend a series or a movie.
+
+* **Data Collection:** The bot asks the user key questions to understand their preferences:
+  1. Do you prefer a closed or an open ending?
+  2. Do you like characters with deep evolution or more static ones?
+  3. Do you prefer a slow, detailed pace or a fast, exciting one?
+
+* **Preprocessing:** The categorical answers are converted into a numerical format using **One-Hot Encoding**.
+
+* **Model Training:** A CSV file with sample data was used to train a classification model that predicts whether the user prefers a "Series" or a "Movie" based on their answers.
+
+* **Execution:** A Python `action` collects the user's responses, processes them, and uses the trained model to make the final decision.
+
+### 3. Web Scraping for Popular Series
+
+To keep series recommendations up-to-date, an `action` that performs **Web Scraping** was implemented.
+
+* The action connects to the official **Netflix Top 10** page.
+* It extracts the real-time list of the 10 most popular series of the week.
+* It formats the information and presents it to the user as a list of recommendations.
+
+### 4. Handling Unrecognized Inputs
+
+To manage situations where the bot doesn't understand the user, the `action_default_fallback` was customized. When the NLU cannot classify a message with a high enough confidence level, this action is triggered and kindly informs the user that it did not understand their request.
